@@ -1,4 +1,4 @@
-# Trending Topics Scraper and Display
+# TrendScraper
 
 ## Description
 
