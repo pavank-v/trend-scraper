@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trending Topics</title>
+    <script>
+        function runScript() {
+            // Disable the button while the script is running
+            document.getElementById("runBtn").disabled = true;
+            document.getElementById("status").innerHTML = "Running the script, please wait...";
+
+            fetch('/run_script', {
+                method: 'POST'
+            })
+            .then(response => response.json())
+            .then(data => {
+                // Update the page with the results
+                document.getElementById("status").innerHTML = "Script completed successfully!";
+
+                const endTime = data.end_time;
+                const trends = data.trends.map((trend, index) => `<li>Name of trend${index + 1}: ${trend}</li>`).join('');
+                const jsonExtract = JSON.stringify(data.mongodb_entry, null, 2);
+
+                document.getElementById("result").innerHTML = `
+                    <h3>These are the most happening topics as on ${endTime}</h3>
+                    <ul>
+                        ${trends}
+                    </ul>
+                    <p>The IP address used for this query was ${data.ip_address}.</p>
+                    <h4>Here’s a JSON extract of this record from MongoDB:</h4>
+                    <pre>${jsonExtract}</pre>
+                    <button onclick="runScript()">Click here to run the query again</button>
+                `;
+            })
+            .catch(error => {
+                document.getElementById("status").innerHTML = "An error occurred while running the script.";
+                console.error('Error:', error);
+            });
+        }
+    </script>
+</head>
+<body>
+    <h1>Click here to run the script:</h1>
+    <button id="runBtn" onclick="runScript()">Click here to run the script</button>
+    <p id="status"></p>
+    <div id="result"></div>
+</body>
+</html>
