@@ -14,7 +14,8 @@ This project is a web scraper that uses **Selenium** to gather the latest trendi
 4. [Installation Instructions](#installation-instructions)
 5. [Usage](#usage)
 6. [MongoDB Schema](#mongodb-schema)
-7. [Contributing](#contributing)
+7. [Screenshots](#screenshots)
+8. [Contributing](#contributing)
 
 ---
 
@@ -107,6 +108,9 @@ pip install selenium requests pymongo flask
   "ip_address": "IP address used during the scrape"
 }
 ```
+## Screenshots
+![Screenshot from 2025-01-03 17-25-01](https://github.com/user-attachments/assets/278519bc-7861-442a-a0e7-d66413a576a4)
+
 
 ## Contributing
 
