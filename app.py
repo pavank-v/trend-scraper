@@ -42,7 +42,7 @@ def create_driver_with_proxy():
     options.add_argument("--disable-gpu")
     options.add_argument("--no-sandbox")
     options.add_argument(f"--proxy-server=http://{proxy}")
-    driver = webdriver.Chrome()
+    driver = webdriver.Chrome(options=options)
     driver.set_window_size(1600, 1000)
     return driver
 
